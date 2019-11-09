@@ -1,0 +1,93 @@
+    <ion-content padding>
+        <div id="contenedorPrinc2" >
+          <hr />
+          <form #forLogin="ngForm" (submit)="onLogin(forLogin)">
+              
+            <div class="contenedorFooter2">                
+              <div class="contenedorInter">
+                <ion-col>
+                  <ion-label class="labFor"> REGISTROS </ion-label> 
+                </ion-col>
+                <ion-row>          
+                <ion-col>
+                  <ion-item>
+                    <!-- <ion-icon name="md-person" item-left></ion-icon> -->
+                    <ion-input class="inpFor" type="text" name="name" placeholder="NOMBRE "  #inputName (input)="inputName.value=$event.target.value.toUpperCase()"></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col>
+                  <ion-item>
+                    <!-- <ion-icon name="md-unlock" item-left></ion-icon> -->
+                    <ion-input class="inpFor" type="text" name="ape"  placeholder="APELLIDO" #inputApellido (input)="inputApellido.value=$event.target.value.toUpperCase()" ></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>  
+              <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label>DEPARTAMENTO</ion-label>
+                        <ion-select interface="popover" placeholder="-Seleccione-" >
+                          <ion-select-option value="76">Valle Del Cauca</ion-select-option>
+                          <ion-select-option value="5">Eje Cafetero</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+                <ion-col>
+                    <ion-item>
+                        <ion-label>MUNICIPIO</ion-label>
+
+                    </ion-item>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-item>
+                    <!-- <ion-icon name="md-person" item-left></ion-icon> -->
+                    <ion-input class="inpFor" type="text" name="barrio" placeholder="BARRIO" #inputBar (input)="inputBar.value=$event.target.value.toUpperCase()"></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col>
+                  <ion-item>
+                    <!-- <ion-icon name="md-person" item-left></ion-icon> -->
+                    <ion-input class="inpFor" type="text" name="direccion" placeholder="DIRECCION" #inputDir (input)="inputDir.value=$event.target.value.toUpperCase()" ></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+                <div id="sub_usuario" class="sub_usuario" >
+                  <ion-col>
+                    <ion-item>
+                      <!-- <ion-icon name="md-person" item-left></ion-icon> -->
+                      <ion-input class="inpFor" type="text" name="username" placeholder="USUARIO" ></ion-input>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col>
+                    <ion-item>
+                      <!-- <ion-icon name="md-person" item-left></ion-icon> -->
+                      <ion-input class="inpFor" type="password" name="username" placeholder="CONTRASEÑA" ></ion-input>
+                    </ion-item>
+                  </ion-col>
+                </div>
+              </div>
+            </div>
+            <div class="contenedorFooterInt">
+              <ion-row>
+                <ion-col>
+                  <ion-item>
+                    <button ion-item class="loginBtn" color="primary" (click)="onLogin();">IR A LOGIN</button>     
+                  </ion-item>
+                </ion-col>    
+
+                <ion-col>
+                  <ion-item>
+                    <button ion-item class="loginBtn" color="primary">REGISTRAR</button>     
+                  </ion-item>
+                </ion-col>
+              </ion-row>   
+            </div>
+            <hr/>
+            <div>
+      
+            </div>
+          </form>
+        </div>
+</ion-content>
