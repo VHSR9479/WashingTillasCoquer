@@ -1,4 +1,7 @@
-    #contenedorPrinc{
+   body{
+       overflow: hidden;
+   }
+   #contenedorPrinc{
         background-image: url("../../assets/logo/zapatillas-sucias.jpg");
         background-size: 100%;    
         -moz-background-size: 100%;  
@@ -118,7 +121,10 @@
         background-color: rgb(64, 58, 83);
         
     }
-
+    .infoPaq{
+        overflow: scroll;
+        width: 20%;
+    }
     .fixed-content{
         // background-image: url('../../assets/imgs/Fondo3.png ') ;
         // background-repeat: no-repeat;

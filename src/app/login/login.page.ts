@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams  } from '@ionic/angular';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import {RegistroPage} from "../registro/registro.page"
+import {RegistroPage} from "../registro/registro.page";
 
 @Component({
   selector: 'app-login',
@@ -33,21 +33,25 @@ export class LoginPage implements OnInit {
   }
    
   onLogin(){
-    this.router.navigateByUrl("/tabs");
+    this.usuario.pass =  window.btoa(this.usuario.pass);
+    this.validarDatos();
+    // this.router.navigateByUrl("/tabs");
   }
 
   onRegistrar(){
     this.router.navigateByUrl("/registro");
   }
 
-  claveDelDia(){
-    const fecha_actual = new Date();
-    const dia:number = fecha_actual.getDate();
-    const mes:number =fecha_actual.getMonth() +1;
-    const anio:number =fecha_actual.getFullYear();
-    let claveDia = (anio*mes*dia)%(anio+mes+dia);
-    return claveDia+"";
+  validarDatos(){
+    if(this.usuario.username == 'VHSR9479' &&  this.usuario.pass == window.btoa("admin"))
+    {
+      alert("ingreso");
+      this.router.navigateByUrl("/tabs")
+    }else{
+      alert("Datos Erroneos al ingresar");
+    }
   }
+
   onLogout(){
    
   }

@@ -10,4 +10,9 @@ export class TabsPage {
 
   constructor() {}
 
+  public grupTab1= false;
+  public grupTab3= false;
+  public grupTab2= true;
+
+
 }

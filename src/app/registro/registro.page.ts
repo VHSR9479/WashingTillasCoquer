@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { IonicSelectableComponent } from 'ionic-selectable';
+
 
 @Component({
   selector: 'app-registro',
@@ -9,8 +10,11 @@ import { Router } from '@angular/router';
 })
 export class RegistroPage implements OnInit {
 
-  constructor( private route: Router) { }
+  constructor( private route: Router) { } 
   private tipo:"";
+  municipios: municipio[];
+  municipio : municipio;
+
 
   ngOnInit() {
   }
@@ -19,7 +23,23 @@ export class RegistroPage implements OnInit {
   }
 
   changeDepartamento(){
+  }
+
+  municipioSearch(event: {
+    component: IonicSelectableComponent,
+    text: any
+  }) {
+    const val = event.text;
+    event.component.startSearch();
+    alert("ingreso");
 
   }
 
+
+}
+
+class municipio{
+  public id: number;
+  public nombre:String;
+  public departamento:number;
 }
