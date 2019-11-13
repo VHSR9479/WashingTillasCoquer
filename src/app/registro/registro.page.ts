@@ -44,40 +44,57 @@ export class RegistroPage implements OnInit {
     alert(this.usuarioM.id_Depto);
   }
   onRegistro(){
-    // alert(   this.usuarioM.apellidos + " --"
-    // +  this.usuarioM.barrio + " --"
-    // +  this.usuarioM.contrasena + " --"
-    // +  this.usuarioM.created_At + " --"
-    // +  this.usuarioM.direccion + " --"
-    // +  this.usuarioM.email + " --"
-    // +  this.usuarioM.id_Ciudad + " --"
-    // +  this.usuarioM.id_Depto + " --"
-    // +  this.usuarioM.id_Estado + " --"
-    // +  this.usuarioM.id_Usuario + " --"
-    // +  this.usuarioM.nombres + " --"
-    // +  this.usuarioM.updated_At + " --");
+    // if(this.validacion){
+        // alert(   this.usuarioM.apellidos + " --"
+        // +  this.usuarioM.barrio + " --"
+        // +  this.usuarioM.contrasena + " --"
+        // +  this.usuarioM.created_At + " --"
+        // +  this.usuarioM.direccion + " --"
+        // +  this.usuarioM.email + " --"
+        // +  this.usuarioM.id_Ciudad + " --"
+        // +  this.usuarioM.id_Depto + " --"
+        // +  this.usuarioM.id_Estado + " --"
+        // +  this.usuarioM.id_Usuario + " --"
+        // +  this.usuarioM.nombres + " --"
+        // +  this.usuarioM.updated_At + " --");
 
-    let body=
-    {
-      'nombres':this.usuarioM.nombres,
-      'apellidos':this.usuarioM.apellidos,
-      'email':this.usuarioM.email ,
-      'direccion':this.usuarioM.direccion,
-      'barrio':this.usuarioM.barrio,
-      'contrasena':this.usuarioM.contrasena,
-      'id_Estado':1,
-      'id_Depto':3,
-      'id_Ciudad':7
-    }
-    console.log(body);
-    this.loginS.postUser(body).subscribe((data)=>{
-      console.log(data);
-      alert("SE HA GUARDADO EL USUARIO :"+data['email']);
-    },
-    (error)=>{
-      console.log(error);
-    });
+        let body=
+        {
+          'nombres':this.usuarioM.nombres,
+          'apellidos':this.usuarioM.apellidos,
+          'email':this.usuarioM.email ,
+          'direccion':this.usuarioM.direccion,
+          'barrio':this.usuarioM.barrio,
+          'contrasena':this.usuarioM.contrasena,
+          'id_Estado':1,
+          'id_Depto':3,
+          'id_Ciudad':7
+        }
+        
+        console.log(body);
+        this.loginS.postUser(body).subscribe((data)=>{
+          console.log(data);
+          alert("SE HA GUARDADO EL USUARIO :"+data['email']);
+        },
+        (error)=>{
+          console.log(error);
+        });
+    // }else{
+    //   alert("Se Deben Ingresar Todos los Datos");
+    // }
   }
 
-
+  validacion(){
+    if(      
+    this.usuarioM.nombres != '' ||
+    this.usuarioM.apellidos != '' ||
+    this.usuarioM.email  != '' ||
+    this.usuarioM.direccion != '' ||
+    this.usuarioM.barrio != '' ||
+    this.usuarioM.contrasena != ''){
+      return true;
+    }else{
+      return false;
+    }
+  }
 }

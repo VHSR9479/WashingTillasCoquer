@@ -44,7 +44,6 @@ export class LoginPage implements OnInit {
         .subscribe((data) => {
           let contador = 0;
           Object.keys(data).map((item) => {
-            console.log(1);
           // });
          
             this.usuarioM.apellidos  = data[contador]['apellidos'];
@@ -59,21 +58,18 @@ export class LoginPage implements OnInit {
             this.usuarioM.id_Usuario = data[contador]['id_Usuario'];
             this.usuarioM.nombres    = data[contador]['nombres'];
             this.usuarioM.updated_At = data[contador]['updated_At'];
-            contador++;
-            if( this.usuarioM.email == this.usuario.username){
-              valdErr = false;
-              this.validarDatos();
-              
-            }
-            
-          });          
+            contador++;            
+            valdErr = false;  
+            this.validarDatos();
+          });     
+          if(valdErr==true) 
+            alert("ERROR AL INGRESAR EL USUARIO O CONTRASEÑA");    
       },                        
       (err)=>{ 
-        console.log(err);
+        alert("ERROR AL INGRESAR EL USUARIO O CONTRASEÑA");
+
       });
-      if(valdErr==true){
-        alert("Usuario o contraseña erroneos");
-      }
+
     }else {
       alert("Se Deben Ingresar Todos los Datos");
     }
@@ -89,6 +85,8 @@ export class LoginPage implements OnInit {
       window.localStorage["usuarioName"] = this.usuarioM.nombres;
       window.localStorage["sesionEstado"] = "Activo"; 
       this.router.navigateByUrl("/tabs")
+    }else{
+      alert("ERROR AL INGRESAR EL USUARIO O CONTRASEÑA");
     }
   }
 
