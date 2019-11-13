@@ -5,11 +5,11 @@ import { HttpClient,HttpHeaders,HttpParams } from '@angular/common/http';
   providedIn: 'root'
 }) 
 export class LoginServiceService {
-  url = "http://localhost:8080/usuario/"; 
+  url = 'http://localhost:8080/usuario/';
   headers: HttpHeaders = new HttpHeaders({
-    "Content-type":"application/json"
+    'Content-type': 'application/json'
   });
-  constructor(public http: HttpClient ) { }
+  constructor(public http: HttpClient) { }
 
   mostrarAlerta(){
   }
@@ -25,8 +25,8 @@ export class LoginServiceService {
     return this.http.post(Url, body.toString(), { headers: Headers });
   }
 
-  postUser(body){
-    let url  = this.url+"insertar";
-    return this.http.post(url,body,{headers:this.headers});
+  postUser(body) {
+    const url = this.url + 'insertar';
+    return this.http.post(url, body, { headers: this.headers });
   }
 }

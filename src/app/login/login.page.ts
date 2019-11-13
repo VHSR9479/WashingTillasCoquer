@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams, AngularDelegate  } from '@ionic/angular';
+import { NavController, NavParams, AngularDelegate } from '@ionic/angular';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import {RegistroPage} from "../registro/registro.page";
-import {UsuarioModelService} from '../Modelo/usuario/usuario-model.service';
-import {LoginServiceService} from '../Servicios/login/login-service.service';
+import { RegistroPage } from "../registro/registro.page";
+import { UsuarioModelService } from '../Modelo/usuario/usuario-model.service';
+import { LoginServiceService } from '../Servicios/login/login-service.service';
 
 @Component({
   selector: 'app-login',
@@ -14,33 +14,33 @@ import {LoginServiceService} from '../Servicios/login/login-service.service';
 export class LoginPage implements OnInit {
   [x: string]: any;
 
-  constructor(private router: Router, 
-              private loginService: LoginServiceService,
-              private usuarioM :UsuarioModelService) {
+  constructor(private router: Router,
+    private loginService: LoginServiceService,
+    private usuarioM: UsuarioModelService) {
 
-   }
+  }
 
   ngOnInit() {
   }
   private usuario = {
-    username :'',
-    pass :''
+    username: '',
+    pass: ''
   };
 
-  
-  public isError=false;
+
+  public isError = false;
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
-   
-  onLogin(){
+
+  onLogin() {
     // this.usuario.pass =  window.btoa(this.usuario.pass);
     // this.validarDatos();
     // this.router.navigateByUrl("/tabs");
 
-      let valdErr = true;
-      if(this.usuario.username != '' && this.usuario.pass != ''){
-        this.loginService.getUser(this.usuario.username,this.usuario.pass)        
+    let valdErr = true;
+    if (this.usuario.username !== '' && this.usuario.pass !== '') {
+      this.loginService.getUser(this.usuario.username, this.usuario.pass)
         .subscribe((data) => {
           let contador = 0;
           Object.keys(data).map((item) => {
@@ -75,22 +75,21 @@ export class LoginPage implements OnInit {
     }
   }
 
-  onRegistrar(){
+  onRegistrar() {
     this.router.navigateByUrl("/registro");
   }
 
-  validarDatos(){
-    if(this.usuario.username == this.usuarioM.email &&  window.btoa(this.usuario.pass) == window.btoa(this.usuarioM.contrasena))
-    {
+  validarDatos() {
+    if (this.usuario.username === this.usuarioM.email && window.btoa(this.usuario.pass) == window.btoa(this.usuarioM.contrasena)) {
       window.localStorage["usuarioName"] = this.usuarioM.nombres;
-      window.localStorage["sesionEstado"] = "Activo"; 
+      window.localStorage["sesionEstado"] = "Activo";
       this.router.navigateByUrl("/tabs")
     }else{
       alert("ERROR AL INGRESAR EL USUARIO O CONTRASEÑA");
     }
   }
 
-  onLogout(){
-   
+  onLogout() {
+
   }
 }
