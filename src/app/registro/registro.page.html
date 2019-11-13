@@ -1,4 +1,4 @@
-    <ion-content padding>
+'<ion-content class="ion-padding">
         <div id="contenedorPrinc2" >
           <hr />
           <form #forLogin="ngForm" (submit)="onLogin(forLogin)">
@@ -12,13 +12,13 @@
                 <ion-col>
                   <ion-item>
                     <!-- <ion-icon name="md-person" item-left></ion-icon> -->
-                    <ion-input class="inpFor" type="text" name="name" placeholder="NOMBRE "  #inputName (input)="inputName.value=$event.target.value.toUpperCase()"></ion-input>
+                    <ion-input [(ngModel)]="usuarioM.nombres" class="inpFor" type="text" name="name" placeholder="NOMBRE "  #inputName (input)="inputName.value=$event.target.value.toUpperCase()"></ion-input>
                   </ion-item>
                 </ion-col>
                 <ion-col>
                   <ion-item>
                     <!-- <ion-icon name="md-unlock" item-left></ion-icon> -->
-                    <ion-input class="inpFor" type="text" name="ape"  placeholder="APELLIDO" #inputApellido (input)="inputApellido.value=$event.target.value.toUpperCase()" ></ion-input>
+                    <ion-input [(ngModel)]="usuarioM.apellidos" class="inpFor" type="text" name="ape"  placeholder="APELLIDO" #inputApellido (input)="inputApellido.value=$event.target.value.toUpperCase()" ></ion-input>
                   </ion-item>
                 </ion-col>
               </ion-row>  
@@ -26,7 +26,7 @@
                 <ion-col>
                     <ion-item>
                         <ion-label>DEPARTAMENTO</ion-label>
-                        <ion-select interface="popover" placeholder="-Seleccione-" >
+                        <ion-select [(ngModel)]="usuarioM.id_Depto" interface="popover" placeholder="-Seleccione-"  (ionChange)="changeDepartamento();">
                           <ion-select-option value="76">Valle Del Cauca</ion-select-option>
                           <ion-select-option value="5">Eje Cafetero</ion-select-option>
                         </ion-select>
@@ -35,7 +35,11 @@
                 <ion-col>
                     <ion-item>
                         <ion-label>MUNICIPIO</ion-label>
-                      
+                        <ion-select   interface="popover" placeholder="-Seleccione-" >                      
+                          <ion-select-option  *ngFor="let ciudad2 of municipioM"
+                            [value]="ciudad2.id">{{ciudad2.nombre}}
+                          </ion-select-option> 
+                      </ion-select >
                     </ion-item>
                 </ion-col>
               </ion-row>
@@ -43,13 +47,13 @@
                 <ion-col>
                   <ion-item>
                     <!-- <ion-icon name="md-person" item-left></ion-icon> -->
-                    <ion-input class="inpFor" type="text" name="barrio" placeholder="BARRIO" #inputBar (input)="inputBar.value=$event.target.value.toUpperCase()"></ion-input>
+                    <ion-input [(ngModel)]="usuarioM.barrio" class="inpFor" type="text" name="barrio" placeholder="BARRIO" #inputBar (input)="inputBar.value=$event.target.value.toUpperCase()"></ion-input>
                   </ion-item>
                 </ion-col>
                 <ion-col>
                   <ion-item>
                     <!-- <ion-icon name="md-person" item-left></ion-icon> -->
-                    <ion-input class="inpFor" type="text" name="direccion" placeholder="DIRECCION" #inputDir (input)="inputDir.value=$event.target.value.toUpperCase()" ></ion-input>
+                    <ion-input [(ngModel)]="usuarioM.direccion" class="inpFor" type="text" name="direccion" placeholder="DIRECCION" #inputDir (input)="inputDir.value=$event.target.value.toUpperCase()" ></ion-input>
                   </ion-item>
                 </ion-col>
               </ion-row>
@@ -57,13 +61,13 @@
                   <ion-col>
                     <ion-item>
                       <!-- <ion-icon name="md-person" item-left></ion-icon> -->
-                      <ion-input class="inpFor" type="text" name="username" placeholder="USUARIO" ></ion-input>
+                      <ion-input [(ngModel)]="usuarioM.email" class="inpFor" type="text" name="username" placeholder="CORREO" ></ion-input>
                     </ion-item>
                   </ion-col>
                   <ion-col>
                     <ion-item>
                       <!-- <ion-icon name="md-person" item-left></ion-icon> -->
-                      <ion-input class="inpFor" type="password" name="username" placeholder="CONTRASEÑA" ></ion-input>
+                      <ion-input [(ngModel)]="usuarioM.contrasena" class="inpFor" type="password" name="username" placeholder="CONTRASEÑA" ></ion-input>
                     </ion-item>
                   </ion-col>
                 </div>
@@ -79,7 +83,7 @@
 
                 <ion-col>
                   <ion-item>
-                    <button ion-item class="loginBtn" color="primary">REGISTRAR</button>     
+                    <button ion-item class="loginBtn" color="primary" (click)="onRegistro();">REGISTRAR</button>     
                   </ion-item>
                 </ion-col>
               </ion-row>   

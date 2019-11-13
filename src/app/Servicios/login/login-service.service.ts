@@ -17,6 +17,11 @@ export class LoginServiceService {
 
   getUser(user,pass){
     let url  = this.url+"all";
-    return this.http.get(url);
+    return this.http.get(url);  
+  }
+
+  postUser(body){
+    let url  = this.url+"insertar";
+    return this.http.post(url,body,{headers:this.headers});
   }
 }

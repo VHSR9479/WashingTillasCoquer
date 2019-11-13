@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams  } from '@ionic/angular';
+import { NavController, NavParams, AngularDelegate  } from '@ionic/angular';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import {RegistroPage} from "../registro/registro.page";
@@ -37,26 +37,46 @@ export class LoginPage implements OnInit {
     // this.usuario.pass =  window.btoa(this.usuario.pass);
     // this.validarDatos();
     // this.router.navigateByUrl("/tabs");
-    this.loginService.getUser(this.usuario.username,this.usuario.pass)
-    .subscribe((data) => {
-        this.usuarioM.apellidos  = data[0]['apellidos'];
-        this.usuarioM.barrio     = data[0]['barrio'];
-        this.usuarioM.contrasena = data[0]['contrasena'];
-        this.usuarioM.created_At = data[0]['created_At'];
-        this.usuarioM.direccion  = data[0]['direccion'];
-        this.usuarioM.email      = data[0]['email'];
-        this.usuarioM.id_Ciudad  = data[0]['id_Ciudad'];
-        this.usuarioM.id_Depto   = data[0]['id_Depto'];
-        this.usuarioM.id_Estado  = data[0]['id_Estado'];
-        this.usuarioM.id_Usuario = data[0]['id_Usuario'];
-        this.usuarioM.nombres    = data[0]['nombres'];
-        this.usuarioM.updated_At = data[0]['updated_At'];
-        console.log(data);
-        this.validarDatos();
-    },                        
-    (err)=>{ 
-      console.log(err);
-    });
+
+      let valdErr = true;
+      if(this.usuario.username != '' && this.usuario.pass != ''){
+        this.loginService.getUser(this.usuario.username,this.usuario.pass)        
+        .subscribe((data) => {
+          let contador = 0;
+          Object.keys(data).map((item) => {
+            console.log(1);
+          // });
+         
+            this.usuarioM.apellidos  = data[contador]['apellidos'];
+            this.usuarioM.barrio     = data[contador]['barrio'];
+            this.usuarioM.contrasena = data[contador]['contrasena'];
+            this.usuarioM.created_At = data[contador]['created_At'];
+            this.usuarioM.direccion  = data[contador]['direccion'];
+            this.usuarioM.email      = data[contador]['email'];
+            this.usuarioM.id_Ciudad  = data[contador]['id_Ciudad'];
+            this.usuarioM.id_Depto   = data[contador]['id_Depto'];
+            this.usuarioM.id_Estado  = data[contador]['id_Estado'];
+            this.usuarioM.id_Usuario = data[contador]['id_Usuario'];
+            this.usuarioM.nombres    = data[contador]['nombres'];
+            this.usuarioM.updated_At = data[contador]['updated_At'];
+            contador++;
+            if( this.usuarioM.email == this.usuario.username){
+              valdErr = false;
+              this.validarDatos();
+              
+            }
+            
+          });          
+      },                        
+      (err)=>{ 
+        console.log(err);
+      });
+      if(valdErr==true){
+        alert("Usuario o contraseña erroneos");
+      }
+    }else {
+      alert("Se Deben Ingresar Todos los Datos");
+    }
   }
 
   onRegistrar(){
@@ -64,16 +84,11 @@ export class LoginPage implements OnInit {
   }
 
   validarDatos(){
-  
-    alert(this.usuario.username +'=='+ this.usuarioM.email +'&&'+  window.btoa(this.usuario.pass) +'=='+ window.btoa(this.usuarioM.contrasena));
     if(this.usuario.username == this.usuarioM.email &&  window.btoa(this.usuario.pass) == window.btoa(this.usuarioM.contrasena))
     {
-      window.localStorage["usuario"] = this.usuarioM;
-      window.localStorage["sesionEstado"] = "Activo";
-
+      window.localStorage["usuarioName"] = this.usuarioM.nombres;
+      window.localStorage["sesionEstado"] = "Activo"; 
       this.router.navigateByUrl("/tabs")
-    }else{
-      alert("Usuario o contraseña erroneos");
     }
   }
 

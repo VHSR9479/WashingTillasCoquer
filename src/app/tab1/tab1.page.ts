@@ -15,9 +15,8 @@ export class Tab1Page {
   constructor(private routerAct: ActivatedRoute, 
               private router:Router,
               private usuarioM :UsuarioModelService) {
-                usuarioM = window.localStorage["apiNameUser"];
-        this.nombre=usuarioM.nombres;
-  }
+              this.nombre = window.localStorage["usuarioName"];
+}
 
   exit(){
     window.localStorage.clear();
