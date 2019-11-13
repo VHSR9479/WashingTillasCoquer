@@ -70,7 +70,18 @@ body {
   width: 50%;
   margin-left: 40%;
   margin-right:40%;
-  border: 2px solid rgb(101, 107, 65);; 
+  border: 1px solid rgb(101, 107, 65);; 
   border-radius: 0px 0px 10px 10px;
   color:white;
+}
+
+.logout{
+  float: right;
+  width: 5%;
+  border-radius: 10px 10px 10px 10px;
+  border: 1px solid rgb(101, 107, 65);
+  color: white;
+  background-color: rgb(206, 101, 60); 
+  font-weight: bold;
+  overflow: hidden;
 }
